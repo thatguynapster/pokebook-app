@@ -15,13 +15,15 @@ http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   config.params = {
     ...config.params,
   };
-  console.log(config.url);
+  // console.log(config.url);
 
   return config;
 });
 
 http.interceptors.response.use(
-  (response: AxiosResponse) => response.data.response,
+  (response: AxiosResponse) => {
+    return response.data;
+  },
   (error: AxiosError<string>) => {
     if (error.response?.status !== 500) {
       return Promise.reject(error?.response?.data ?? error?.message);
