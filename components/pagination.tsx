@@ -7,18 +7,19 @@ import { useStore } from "@/hooks";
 import { clash } from "@/fonts";
 
 interface PaginationButtonProps {
-  currentPage: number;
+  // currentPage: number;
   page: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
   children?: ReactNode;
 }
 
 const PaginationButton: React.FC<PaginationButtonProps> = ({
-  currentPage,
   page,
   setCurrentPage,
   children,
 }) => {
+  const { store } = useStore();
+
   const handleClick = () => {
     if (typeof page === "number") {
       setCurrentPage(page);
@@ -34,7 +35,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
         "min-w-10 h-10",
         "px-2 py-1.5",
         "font-medium",
-        currentPage === page && "bg-primary text-white"
+        store.page === page && "bg-primary text-white"
       )}
       onClick={handleClick}
     >
@@ -121,7 +122,7 @@ export const Pagination: React.FC<PaginationProps> = ({ pages }) => {
           <PaginationButton
             key={index}
             page={page}
-            currentPage={currentPage}
+            // currentPage={currentPage}
             setCurrentPage={(page) => {
               updateFilters(page as number);
             }}

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import queryString from "query-string";
 import useSWR from "swr";
 
-import { Pagination, PokemonCard } from "@/components";
+import { PageLimit, Pagination, PokemonCard } from "@/components";
 import { classNames, http } from "@/libs";
 import { FilterProps } from "@/types";
 import { useStore } from "@/hooks";
@@ -66,7 +66,12 @@ const Page = () => {
           ))}
       </div>
 
-      {data && !store.search && <Pagination pages={pages} />}
+      {data && !store.search && (
+        <div className="flex justify-between gap-4 mb-20">
+          <Pagination pages={pages} />
+          <PageLimit {...{ setFilters }} />
+        </div>
+      )}
     </div>
   );
 };
