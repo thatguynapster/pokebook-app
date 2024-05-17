@@ -30,7 +30,7 @@ export const Navbar = () => {
   return (
     <div
       className={classNames(
-        "sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 px-4 sm:gap-x-6 sm:px-6 lg:px-8",
+        "sticky top-0 z-50 flex h-16 shrink-0 items-center gap-x-4 px-4 sm:gap-x-6 sm:px-6 lg:px-8",
         "border-b border-neutral-20 dark:border-none",
         "bg-white dark:bg-neutral-gray"
       )}

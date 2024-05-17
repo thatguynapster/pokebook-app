@@ -13,8 +13,8 @@ interface PokemonCardProps {
 }
 
 export const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
-  console.log(pokemon);
   const { data, isLoading, error } = usePokemon(pokemon.name);
+  console.log(data);
 
   return (
     <div className={getCardClasses(isLoading)}>
@@ -22,10 +22,15 @@ export const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
         {data && (
           <Image
             alt={pokemon.name}
-            src={data.sprites?.front_default ?? "/img/logo-small.png"}
+            src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${data.id}.svg`} //TODO figure out a way to make all the images size up nicely. Some images are just too large
+            onError={(e) => {
+              e.currentTarget.src =
+                data.sprites?.front_default ?? "/img/logo-small.png";
+            }}
             height={187}
             width={191}
             className="absolute left-0 right-0 bottom-0 w-1/2 sm:w-2/3 md:w-full mx-auto"
+            // className="absolute left-0 right-0 bottom-0 w-full mx-auto"
             sizes="(max-width: 768px) 33vw, (max-width: 1200px) 50vw, 100vw"
           />
         )}
@@ -52,7 +57,7 @@ const getCardClasses = (isLoading: boolean) =>
     "items-center gap-4",
     "flex flex-col",
     "p-2.5 pb-4",
-    "group hover:z-10 h-fit",
+    "group z-10 hover:z-20 h-fit",
     "relative",
     "mb-16 hover:mb-0"
   );
