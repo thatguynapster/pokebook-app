@@ -7,7 +7,6 @@ import { classNames } from "@/libs";
 import { clash } from "@/fonts";
 
 interface PaginationButtonProps {
-  // currentPage: number;
   page: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
   children?: ReactNode;
@@ -35,7 +34,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
         "min-w-10 h-10",
         "px-2 py-1.5",
         "font-medium",
-        store.page === page && "bg-primary text-white"
+        (store.page ?? 1) === page && "bg-primary text-white"
       )}
       onClick={handleClick}
     >
