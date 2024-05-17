@@ -8,9 +8,12 @@ import Link from "next/link";
 import { Field } from "@/components";
 import { clash } from "@/fonts";
 import { routes } from "@/routes";
+import { useStore } from "@/hooks";
 
 export default function Home() {
   const router = useRouter();
+  const { store, setStore } = useStore();
+
   return (
     <main className="flex flex-col gap-24 w-full max-w-[33.5rem] mx-auto min-h-screen pt-[7.625rem]">
       <div className="flex flex-col gap-1 items-center">
@@ -36,6 +39,7 @@ export default function Home() {
           <Field.Search
             onSearch={(search: string) => {
               console.log(search);
+              setStore({ ...store, search: { name: search } });
               router.push(routes.pokemon.index);
             }}
           />
@@ -43,6 +47,9 @@ export default function Home() {
 
         <Link
           href={routes.pokemon.index}
+          onClick={() => {
+            setStore({ ...store, search: null });
+          }}
           className="underline font-medium text-[#0D131A]"
         >
           View all

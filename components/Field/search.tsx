@@ -44,13 +44,18 @@ export function Search({
           currentTarget: { value },
         }: ChangeEvent<HTMLInputElement>) => {
           setSearch(value);
-          handleSearch(value);
         }}
       />
 
-      <span className="bg-primary  p-3.5 rounded-full">
+      <button
+        className="bg-primary  p-3.5 rounded-full"
+        disabled={!search}
+        onClick={() => {
+          handleSearch(search);
+        }}
+      >
         <MagnifyingGlassIcon className="h-5 w-5 stroke-[2.5px] text-white" />
-      </span>
+      </button>
     </div>
   );
   {

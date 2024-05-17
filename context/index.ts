@@ -6,6 +6,7 @@ export interface StoreInterface {
   theme: string;
   page: number;
   limit: number;
+  search: any;
 }
 
 export const StoreContext = createContext<{
