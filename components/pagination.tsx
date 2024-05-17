@@ -52,7 +52,6 @@ export const Pagination: React.FC<PaginationProps> = ({ pages }) => {
   const [currentPage, setCurrentPage] = useState(store.page ?? 1);
 
   const width = useWidth();
-  console.log(width);
 
   const base = (width as number) <= 320;
   const xs = (width as number) <= 425;

@@ -14,7 +14,6 @@ interface PokemonCardProps {
 
 export const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
   const { data, isLoading, error } = usePokemon(pokemon.name);
-  console.log(data);
 
   return (
     <div className={getCardClasses(isLoading)}>

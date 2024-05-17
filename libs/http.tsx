@@ -15,7 +15,6 @@ http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   config.params = {
     ...config.params,
   };
-  // console.log(config.url);
 
   return config;
 });

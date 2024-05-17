@@ -14,19 +14,15 @@ import {
 import { routes } from "@/routes";
 import { clash } from "@/fonts";
 import Link from "next/link";
+import { useStore } from "@/hooks";
 
 export const Navbar = () => {
   const router = useRouter();
+  const { store, setStore } = useStore();
 
   const [search, setSearch] = useState<string>("");
   const [toggleSearch, setToggleSearch] = useState<boolean>(false);
 
-  const handleSearch = useCallback(
-    debounce((search: string) => {
-      router.push(routes.pokemon.index);
-    }, 500),
-    []
-  );
   return (
     <div
       className={classNames(
@@ -46,6 +42,7 @@ export const Navbar = () => {
             <Image
               src="/img/logo-small.png"
               fill
+              priority
               className="mt-3"
               alt="Pkoeapp Logo"
               sizes="(max-width: 1200px) 50vw, 100vw"
@@ -95,9 +92,26 @@ export const Navbar = () => {
               currentTarget: { value },
             }: ChangeEvent<HTMLInputElement>) => {
               setSearch(value);
-              handleSearch(value);
+              if (value === "") {
+                setStore({ ...store, search: null });
+              }
             }}
           />
+
+          {search && (
+            <button
+              className="bg-primary  p-1 rounded-full"
+              disabled={!search}
+              onClick={() => {
+                if (search !== "") {
+                  return setStore({ ...store, search: { name: search } });
+                }
+                setStore({ ...store, search: null });
+              }}
+            >
+              <MagnifyingGlassIcon className="h-4 w-4 stroke-[2.5px] text-white" />
+            </button>
+          )}
         </div>
 
         <div

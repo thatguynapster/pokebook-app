@@ -38,7 +38,6 @@ export default function Home() {
         <div className="bg-primary  p-2 rounded-full w-full">
           <Field.Search
             onSearch={(search: string) => {
-              console.log(search);
               setStore({ ...store, search: { name: search } });
               router.push(routes.pokemon.index);
             }}
