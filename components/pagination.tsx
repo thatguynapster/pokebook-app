@@ -2,8 +2,8 @@
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
+import { useStore, useWidth } from "@/hooks";
 import { classNames } from "@/libs";
-import { useStore } from "@/hooks";
 import { clash } from "@/fonts";
 
 interface PaginationButtonProps {
@@ -52,6 +52,14 @@ export const Pagination: React.FC<PaginationProps> = ({ pages }) => {
   const { store, setStore } = useStore();
   const [currentPage, setCurrentPage] = useState(store.page ?? 1);
 
+  const width = useWidth();
+  console.log(width);
+
+  const base = (width as number) <= 320;
+  const xs = (width as number) <= 425;
+
+  const paginationButtonOffset = base ? 0 : xs ? 2 : 3;
+
   const updateFilters = (page: number) => {
     setCurrentPage(page);
     setStore({ ...store, page });
@@ -65,22 +73,26 @@ export const Pagination: React.FC<PaginationProps> = ({ pages }) => {
         displayedPages.push(i);
       }
     } else {
-      if (currentPage <= 3) {
-        for (let i = 1; i <= 4; i++) {
+      if (currentPage <= paginationButtonOffset + 1) {
+        for (let i = 1; i <= paginationButtonOffset + 1; i++) {
           displayedPages.push(i);
         }
         displayedPages.push("...");
         displayedPages.push(pages);
-      } else if (currentPage >= pages - 2) {
+      } else if (currentPage >= pages - paginationButtonOffset) {
         displayedPages.push(1);
         displayedPages.push("...");
-        for (let i = pages - 3; i <= pages; i++) {
+        for (let i = pages - paginationButtonOffset; i <= pages; i++) {
           displayedPages.push(i);
         }
       } else {
-        displayedPages.push(1);
-        displayedPages.push("...");
-        for (let i = currentPage - 2; i <= currentPage + 2; i++) {
+        // displayedPages.push(1);
+        // displayedPages.push("...");
+        for (
+          let i = currentPage - paginationButtonOffset;
+          i <= currentPage;
+          i++
+        ) {
           displayedPages.push(i);
         }
         displayedPages.push("...");
@@ -104,7 +116,7 @@ export const Pagination: React.FC<PaginationProps> = ({ pages }) => {
   };
 
   return (
-    <div className="flex gap-2.5">
+    <div className="flex justify-between md:justify-start gap-2.5">
       <button
         onClick={handlePrevPage}
         disabled={currentPage === 1}
@@ -122,13 +134,12 @@ export const Pagination: React.FC<PaginationProps> = ({ pages }) => {
           <PaginationButton
             key={index}
             page={page}
-            // currentPage={currentPage}
             setCurrentPage={(page) => {
               updateFilters(page as number);
             }}
           />
         ) : (
-          <div key={index} className="text-4xl font-medium">
+          <div key={index} className="text-3xl font-medium">
             ...
           </div>
         )

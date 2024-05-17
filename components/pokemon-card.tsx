@@ -25,7 +25,7 @@ export const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
             src={data.sprites?.front_default ?? "/img/logo-small.png"}
             height={187}
             width={191}
-            className="absolute left-0 right-0 bottom-0 w-full"
+            className="absolute left-0 right-0 bottom-0 w-1/2 sm:w-2/3 md:w-full mx-auto"
             sizes="(max-width: 768px) 33vw, (max-width: 1200px) 50vw, 100vw"
           />
         )}

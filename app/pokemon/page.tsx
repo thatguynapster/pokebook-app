@@ -36,14 +36,14 @@ const Page = () => {
   }, [store.page, store.limit]);
 
   return (
-    <div className="px-32 flex flex-col gap-4">
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="px-8 lg:px-32 flex flex-col gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
         {isLoading &&
           Array.from({ length: filters.limit! }, (_, i) => (
             <div
               key={i}
               className={classNames(
-                "h-[268px]",
+                "h-[258px]",
                 "bg-neutral-300 animate-pulse",
                 "rounded-[20px] shadow-md"
               )}
@@ -67,7 +67,7 @@ const Page = () => {
       </div>
 
       {data && !store.search && (
-        <div className="flex justify-between gap-4 mb-20">
+        <div className="flex flex-col md:flex-row justify-between gap-4 mb-20">
           <Pagination pages={pages} />
           <PageLimit {...{ setFilters }} />
         </div>
