@@ -4,6 +4,8 @@ import { Dispatch, SetStateAction, createContext } from "react";
 
 export interface StoreInterface {
   theme: string;
+  page: number;
+  limit: number;
 }
 
 export const StoreContext = createContext<{

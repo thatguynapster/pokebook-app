@@ -8,7 +8,7 @@ import { usePokemon } from "@/hooks";
 import { classNames } from "@/libs";
 import { EyeIcon } from "@heroicons/react/16/solid";
 
-const PokemonCard = ({ pokemon }: { pokemon: any }) => {
+export const PokemonCard = ({ pokemon }: { pokemon: any }) => {
   const { data, isLoading, error } = usePokemon(pokemon.name);
   console.log(data);
 
@@ -35,7 +35,7 @@ const PokemonCard = ({ pokemon }: { pokemon: any }) => {
         {data && (
           <Image
             alt={pokemon.name}
-            src={data.sprites.front_default}
+            src={data.sprites?.front_default ?? "/img/logo-small.png"}
             height={187}
             width={191}
             // height={187}
@@ -46,14 +46,21 @@ const PokemonCard = ({ pokemon }: { pokemon: any }) => {
       </div>
 
       <div className="flex flex-col items-center gap-1 w-full">
-        <h2 className={classNames(clash.className, "text-2xl font-medium")}>
+        <h2
+          className={classNames(
+            clash.className,
+            "text-2xl font-medium",
+            "line-clamp-1"
+          )}
+        >
           {pokemon.name}
         </h2>
 
         <div className="flex gap-2.5">
           {isLoading &&
-            Array.from({ length: 2 }, (_, j) => (
+            Array.from({ length: 2 }, (_, i) => (
               <div
+                key={i}
                 className={classNames(
                   "bg-[#EEEEEE] animate-pulse",
                   "h-8 w-20 rounded-full",
@@ -95,5 +102,3 @@ const PokemonCard = ({ pokemon }: { pokemon: any }) => {
     </div>
   );
 };
-
-export default PokemonCard;
