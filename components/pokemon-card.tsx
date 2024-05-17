@@ -22,15 +22,14 @@ export const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
         {data && (
           <Image
             alt={pokemon.name}
-            src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${data.id}.svg`} //TODO figure out a way to make all the images size up nicely. Some images are just too large
+            src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${data.id}.svg`}
             onError={(e) => {
               e.currentTarget.src =
                 data.sprites?.front_default ?? "/img/logo-small.png";
             }}
-            height={187}
-            width={191}
-            className="absolute left-0 right-0 bottom-0 w-1/2 sm:w-2/3 md:w-full mx-auto"
-            // className="absolute left-0 right-0 bottom-0 w-full mx-auto"
+            priority
+            fill
+            className="!w-[70%] mx-auto !h-[130%] -mt-12"
             sizes="(max-width: 768px) 33vw, (max-width: 1200px) 50vw, 100vw"
           />
         )}
