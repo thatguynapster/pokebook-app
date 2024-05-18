@@ -75,7 +75,7 @@ const Page = () => {
       </div>
 
       <SearchDetails
-        show={store.search}
+        show={store.search ?? false}
         onHide={() => {
           setStore({ ...store, search: null });
         }}

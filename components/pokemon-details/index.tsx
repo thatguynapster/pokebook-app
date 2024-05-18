@@ -1,18 +1,17 @@
 "use client";
 
-import { Transition, TransitionChild } from "@headlessui/react";
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 import { RGBToHex, classNames, get_average_rgb } from "@/libs";
-import { usePokemon, useStore } from "@/hooks";
 import Tabs, { LocalTabsProps } from "../Tabs/Tabs";
+import { renderTypes } from "../pokemon-card";
+import { motion } from "framer-motion";
+import { usePokemon } from "@/hooks";
+import { Similar } from "./similar";
 import { clash } from "@/fonts";
 import { About } from "./about";
 import { Stats } from "./stats";
-import { Similar } from "./similar";
-import { renderTypes } from "../pokemon-card";
-import { motion } from "framer-motion";
 
 export interface PokemonDetailsProps {
   pokemon?: any;
