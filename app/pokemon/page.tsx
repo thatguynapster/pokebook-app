@@ -57,21 +57,13 @@ const Page = () => {
             ))}
 
           {data &&
-            // (store.search ? (
-            //   <div className="h-fit">
-            //     <PokemonCard pokemon={store.search} />
-            //   </div>
-            // ) : (
-            data.results.map(
-              (pokemon: any, i: number) => {
-                return (
-                  <div className="h-fit" key={i}>
-                    <PokemonCard key={i} {...{ pokemon }} />
-                  </div>
-                );
-              }
-              // ))
-            )}
+            data.results.map((pokemon: any, i: number) => {
+              return (
+                <div className="h-fit" key={i}>
+                  <PokemonCard key={i} {...{ pokemon }} />
+                </div>
+              );
+            })}
         </div>
 
         {data && !store.search && (

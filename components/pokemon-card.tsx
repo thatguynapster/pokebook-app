@@ -7,6 +7,7 @@ import { usePokemon } from "@/hooks";
 import { classNames } from "@/libs";
 import { EyeIcon } from "@heroicons/react/16/solid";
 import { FC } from "react";
+import PokemonCardDetails from "./pokemon-card-details";
 
 interface PokemonCardProps {
   pokemon: any;
@@ -50,10 +51,14 @@ export const PokemonCard: FC<PokemonCardProps> = ({
       </div>
 
       {with_types && (
-        <button className={getButtonClasses()}>
-          <span>View Pokemon</span>
-          <EyeIcon className="w-5 h-5" />
-        </button>
+        <PokemonCardDetails pokemon={pokemon}>
+          {({ proceed }) => (
+            <button onClick={proceed} className={getButtonClasses()}>
+              <span>View Pokemon</span>
+              <EyeIcon className="w-5 h-5" />
+            </button>
+          )}
+        </PokemonCardDetails>
       )}
     </div>
   );
