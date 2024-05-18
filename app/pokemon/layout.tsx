@@ -9,7 +9,7 @@ const layout = ({
   return (
     <>
       <Navbar />
-      <div className="mt-[60px] min-h-[calc(100vh-124px)]">{children}</div>
+      <div className="mt-[50px] min-h-[calc(100vh-130px)]">{children}</div>
     </>
   );
 };

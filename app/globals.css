@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
+  --primary: #39badf;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,3 +32,13 @@ body {
     text-wrap: balance;
   }
 }
+
+meter::-webkit-meter-optimum-value {
+  background: var(--primary);
+}
+meter::-moz-meter-bar {
+  /* Firefox Pseudo Class */
+  background: var(--primary);
+}
+
+@import "swiper/css";

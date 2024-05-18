@@ -10,25 +10,32 @@ import { FC } from "react";
 
 interface PokemonCardProps {
   pokemon: any;
+  with_types?: boolean;
 }
 
-export const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
+export const PokemonCard: FC<PokemonCardProps> = ({
+  pokemon,
+  with_types = true,
+}) => {
   const { data, isLoading, error } = usePokemon(pokemon.name);
 
   return (
-    <div className={getCardClasses(isLoading)}>
+    <div className={getCardClasses(isLoading, with_types)}>
       <div className={getImageContainerClasses(isLoading)}>
         {data && (
           <Image
             alt={pokemon.name}
-            src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${data.id}.svg`}
+            src={
+              data.sprites?.other?.dream_world?.front_default ??
+              data.sprites?.front_default ??
+              "/img/logo-small.png"
+            }
             onError={(e) => {
-              e.currentTarget.src =
-                data.sprites?.front_default ?? "/img/logo-small.png";
+              e.currentTarget.src = "/img/logo-small.png";
             }}
             priority
             fill
-            className="!w-[70%] mx-auto !h-[130%] -mt-12"
+            className="!w-[80%] !h-[130%] mx-auto -mt-14"
             sizes="(max-width: 768px) 33vw, (max-width: 1200px) 50vw, 100vw"
           />
         )}
@@ -37,19 +44,23 @@ export const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
       <div className="flex flex-col items-center gap-1 w-full">
         <h2 className={getNameClasses()}>{pokemon.name}</h2>
 
-        <div className="flex gap-2.5">{renderTypes(data, isLoading)}</div>
+        {with_types && (
+          <div className="flex gap-2.5">{renderTypes(data, isLoading)}</div>
+        )}
       </div>
 
-      <button className={getButtonClasses()}>
-        <span>View Pokemon</span>
-        <EyeIcon className="w-5 h-5" />
-      </button>
+      {with_types && (
+        <button className={getButtonClasses()}>
+          <span>View Pokemon</span>
+          <EyeIcon className="w-5 h-5" />
+        </button>
+      )}
     </div>
   );
 };
 
 // Helper functions
-const getCardClasses = (isLoading: boolean) =>
+const getCardClasses = (isLoading: boolean, with_types: boolean) =>
   classNames(
     "bg-white shadow-[0px_4px_40px_0px_#0000000F] rounded-[20px]",
     "items-center gap-4",
@@ -57,7 +68,7 @@ const getCardClasses = (isLoading: boolean) =>
     "p-2.5 pb-4",
     "group z-10 hover:z-20 h-fit",
     "relative",
-    "mb-16 hover:mb-0"
+    with_types ? "mb-16 hover:mb-0" : "mt-16"
   );
 
 const getImageContainerClasses = (isLoading: boolean) =>
@@ -71,7 +82,7 @@ const getImageContainerClasses = (isLoading: boolean) =>
 const getNameClasses = () =>
   classNames(clash.className, "text-2xl font-medium", "line-clamp-1");
 
-const renderTypes = (data: any, isLoading: boolean) => {
+export const renderTypes = (data: any, isLoading: boolean) => {
   if (isLoading) {
     return Array.from({ length: 2 }, (_, i) => (
       <div

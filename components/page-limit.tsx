@@ -1,18 +1,11 @@
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import {
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-  Transition,
-} from "@headlessui/react";
-
 import React, { Dispatch, Fragment, SetStateAction } from "react";
-import { classNames } from "@/libs";
+import { Button } from "@restart/ui";
+
 import { FilterProps } from "@/types";
+import { classNames } from "@/libs";
 import { useStore } from "@/hooks";
 import { Dropdown } from ".";
-import { Button } from "@restart/ui";
 
 interface PageLimitProps {
   setFilters: Dispatch<SetStateAction<Partial<FilterProps>>>;

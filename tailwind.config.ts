@@ -12,7 +12,7 @@ const config: Config = {
         main: "url('/img/bg-main.jpg')",
       },
       colors: {
-        primary: "#E85382",
+        primary: "var(--primary)",
       },
     },
   },

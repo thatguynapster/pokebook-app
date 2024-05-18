@@ -17,7 +17,6 @@ import Link from "next/link";
 import { useStore } from "@/hooks";
 
 export const Navbar = () => {
-  const router = useRouter();
   const { store, setStore } = useStore();
 
   const [search, setSearch] = useState<string>("");
@@ -26,17 +25,17 @@ export const Navbar = () => {
   return (
     <div
       className={classNames(
-        "sticky top-0 z-50 flex h-16 shrink-0 items-center gap-x-4 px-4 sm:gap-x-6 sm:px-6 lg:px-8",
+        "sticky top-0 z-20 h-20 shrink-0 items-center px-4 md:py-0 sm:px-6 lg:px-8",
         "border-b border-neutral-20 dark:border-none",
         "bg-white dark:bg-neutral-gray"
       )}
     >
-      <div className="flex justify-between items-center w-full">
+      <div className="flex justify-between items-center gap-x-4 sm:gap-x-6 w-full">
         <Link href={routes.home} className="flex items-center gap-2">
           <div
             className={classNames(
               toggleSearch && "hidden md:block",
-              "relative h-[84px] w-[129px]"
+              "relative h-[80px] w-[129px]"
             )}
           >
             <Image
@@ -62,7 +61,7 @@ export const Navbar = () => {
 
         <div
           className={classNames(
-            toggleSearch ? "pl-4 flex-grow" : "pl-1.5",
+            toggleSearch ? "pl-4 flex-grow my-4" : "pl-1.5",
             "md:flex-grow p-2 bg-white border flex items-center gap-2 rounded-full max-w-[440px] shadow-md"
           )}
         >
