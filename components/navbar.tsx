@@ -1,20 +1,15 @@
 "use client";
 
-import React, { ChangeEvent, useCallback, useState } from "react";
-import debounce from "lodash/debounce";
+import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import React, { ChangeEvent, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { classNames } from "@/libs";
-import {
-  MagnifyingGlassIcon,
-  PowerIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { useStore } from "@/hooks";
 import { routes } from "@/routes";
 import { clash } from "@/fonts";
-import Link from "next/link";
-import { useStore } from "@/hooks";
+import { Theme } from "./theme";
 
 export const Navbar = () => {
   const { store, setStore } = useStore();
@@ -113,22 +108,33 @@ export const Navbar = () => {
           )}
         </div>
 
-        <div
-          className={classNames(
-            toggleSearch && "hidden md:block",
-            "justify-end gap-x-4 lg:gap-x-6"
+        <Theme>
+          {({ proceed }) => (
+            <button
+              onClick={proceed}
+              className={classNames(
+                toggleSearch && "hidden md:block",
+                "justify-end gap-x-4 lg:gap-x-6"
+              )}
+            >
+              <div
+                className={classNames(
+                  "w-[45px] h-[45px]",
+                  "border border-[#868686] rounded-full",
+                  "flex items-center justify-center"
+                )}
+              >
+                <div
+                  className={classNames(
+                    "w-[34.5px] h-[34.5px]",
+                    "rounded-full",
+                    "bg-primary"
+                  )}
+                ></div>
+              </div>
+            </button>
           )}
-        >
-          <div
-            className={classNames(
-              "w-[45px] h-[45px]",
-              "border border-[#868686] rounded-full",
-              "flex items-center justify-center"
-            )}
-          >
-            <div className="w-[34.5px] h-[34.5px] bg-primary rounded-full"></div>
-          </div>
-        </div>
+        </Theme>
       </div>
     </div>
   );

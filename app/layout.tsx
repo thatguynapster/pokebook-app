@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import local from "next/font/local";
-import "./globals.css";
+
+import { AppProvider, StoreProvider } from "@/providers";
 import { classNames } from "@/libs";
 import { general_sans } from "@/fonts";
-import { AppProvider, StoreProvider } from "@/providers";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Pokébook App",

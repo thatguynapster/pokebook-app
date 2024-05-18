@@ -47,7 +47,7 @@ const Meter = ({ value }: { value: number }) => {
   return (
     <div className="w-20 md:w-44 bg-gray-200 h-2">
       <div
-        className={classNames(`bg-blue-600 h-2`)}
+        className={classNames(`bg-primary h-2`)}
         style={{ width: `${stat}%` }}
       ></div>
     </div>

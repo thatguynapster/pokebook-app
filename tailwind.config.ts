@@ -12,7 +12,7 @@ const config: Config = {
         main: "url('/img/bg-main.jpg')",
       },
       colors: {
-        primary: "var(--primary)",
+        primary: "rgba(var(--primary), var(--tw-bg-opacity))",
       },
     },
   },

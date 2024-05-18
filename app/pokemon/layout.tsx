@@ -1,11 +1,20 @@
+"use client";
+
 import { Navbar } from "@/components/navbar";
-import React from "react";
+import { useStore } from "@/hooks";
+import React, { useEffect } from "react";
 
 const layout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const { store } = useStore();
+
+  useEffect(() => {
+    document.documentElement.style.setProperty("--primary", store.theme!);
+  }, [store]);
+
   return (
     <>
       <Navbar />
