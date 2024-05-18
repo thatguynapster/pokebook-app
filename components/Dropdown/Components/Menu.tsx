@@ -34,7 +34,6 @@ export const Menu = ({ role, className, children, ...rest }: MenuProps) => {
       }}
       className={classNames(
         "bg-white shadow-3xl rounded-lg",
-
         "z-10 overflow-auto",
         "flex flex-col",
         "p-1",

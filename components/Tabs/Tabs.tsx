@@ -20,11 +20,6 @@ export default function ({
   componentClassName,
   ...props
 }: LocalTabsProps) {
-  /**
-   * variables
-   */
-  const tab = tabs.find((i) => i.slug === activeKey);
-
   return (
     <Tabs
       {...{ activeKey, ...props }}

@@ -11,17 +11,17 @@ import PokemonCardDetails from "./pokemon-card-details";
 
 interface PokemonCardProps {
   pokemon: any;
-  with_types?: boolean;
+  withTypes?: boolean;
 }
 
 export const PokemonCard: FC<PokemonCardProps> = ({
   pokemon,
-  with_types = true,
+  withTypes = true,
 }) => {
   const { data, isLoading, error } = usePokemon(pokemon.name);
 
   return (
-    <div className={getCardClasses(isLoading, with_types)}>
+    <div className={getCardClasses(isLoading, withTypes)}>
       <div className={getImageContainerClasses(isLoading)}>
         {data && (
           <Image
@@ -45,12 +45,12 @@ export const PokemonCard: FC<PokemonCardProps> = ({
       <div className="flex flex-col items-center gap-1 w-full">
         <h2 className={getNameClasses()}>{pokemon.name}</h2>
 
-        {with_types && (
+        {withTypes && (
           <div className="flex gap-2.5">{renderTypes(data, isLoading)}</div>
         )}
       </div>
 
-      {with_types && (
+      {withTypes && (
         <PokemonCardDetails pokemon={pokemon}>
           {({ proceed }) => (
             <button onClick={proceed} className={getButtonClasses()}>
@@ -65,7 +65,7 @@ export const PokemonCard: FC<PokemonCardProps> = ({
 };
 
 // Helper functions
-const getCardClasses = (isLoading: boolean, with_types: boolean) =>
+const getCardClasses = (isLoading: boolean, withTypes: boolean) =>
   classNames(
     "bg-white shadow-[0px_4px_40px_0px_#0000000F] rounded-[20px]",
     "items-center gap-4",
@@ -73,7 +73,7 @@ const getCardClasses = (isLoading: boolean, with_types: boolean) =>
     "p-2.5 pb-4",
     "group z-10 hover:z-20 h-fit",
     "relative",
-    with_types ? "mb-16 hover:mb-0" : "mt-16"
+    withTypes ? "mb-16 hover:mb-0" : "mt-16"
   );
 
 const getImageContainerClasses = (isLoading: boolean) =>

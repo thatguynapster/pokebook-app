@@ -1,13 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSWRConfig } from "swr";
 
 import { StoreContext, StoreInterface } from "@/context";
 
 export function StoreProvider({ children }: { children: any }) {
-  const { mutate } = useSWRConfig();
-
   const [store, setStore] = useState<Partial<StoreInterface>>(() => {
     if (typeof window !== "undefined") {
       const store = window.localStorage.getItem(

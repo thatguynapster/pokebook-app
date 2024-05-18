@@ -3,7 +3,6 @@
 import { classNames } from "@/libs";
 import { useNavItem, NavItemProps } from "@restart/ui/NavItem";
 
-// eslint-disable-next-line
 export interface TabProps extends NavItemProps {}
 
 export function Tab({ eventKey, as: Component = "a", ...props }: TabProps) {

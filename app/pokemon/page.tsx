@@ -66,10 +66,10 @@ const Page = () => {
             })}
         </div>
 
-        {data && !store.search && (
+        {data && (
           <div className="flex flex-col md:flex-row justify-between gap-4 mb-12">
             <Pagination pages={pages} />
-            <PageLimit {...{ setFilters }} />
+            <PageLimit />
           </div>
         )}
       </div>

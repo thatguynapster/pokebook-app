@@ -80,10 +80,6 @@ export const Theme = ({
                         <button
                           key={i}
                           onClick={() => {
-                            // document.documentElement.style.setProperty(
-                            //   "--primary",
-                            //   theme
-                            // );
                             setStore({ ...store, theme });
                           }}
                           className={"justify-end gap-x-4 lg:gap-x-6"}

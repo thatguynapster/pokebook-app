@@ -1,3 +1,3 @@
-export * from "./pokemon";
+export * from "./usePokemon";
 export * from "./useStore";
 export * from "./useWidth";

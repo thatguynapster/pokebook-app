@@ -1,18 +1,24 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { classNames } from "@/libs";
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Field } from "@/components";
-import { clash } from "@/fonts";
-import { routes } from "@/routes";
+import { classNames } from "@/libs";
 import { useStore } from "@/hooks";
+import { routes } from "@/routes";
+import { clash } from "@/fonts";
 
 export default function Home() {
   const router = useRouter();
   const { store, setStore } = useStore();
+
+  useEffect(() => {
+    store.theme &&
+      document.documentElement.style.setProperty("--primary", store.theme!);
+  }, [store]);
 
   return (
     <main className="flex flex-col gap-24 w-full max-w-[33.5rem] mx-auto min-h-screen pt-[7.625rem]">
@@ -34,7 +40,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="flex flex-col items-center gap-1">
+      <div className="flex flex-col items-center gap-4">
         <div className="bg-primary  p-2 rounded-full w-full">
           <Field.Search
             onSearch={(search: string) => {

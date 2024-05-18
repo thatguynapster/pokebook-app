@@ -12,25 +12,25 @@ export const classNames = (...inputs: ClassValue[]) => {
 
 export const get_average_rgb = async (src: string) => {
   return new Promise((resolve: (value: number[]) => void, reject) => {
-    console.log(src);
-    // if (src) {
-    const img = document.createElement("IMG");
-    const colorThief = new ColorThief();
-    img.setAttribute("src", src);
+    try {
+      const img = document.createElement("IMG");
+      const colorThief = new ColorThief();
+      img.setAttribute("src", src);
 
-    // @ts-ignore
-    img.crossOrigin = "Anonymous";
+      // @ts-ignore
+      img.crossOrigin = "Anonymous";
 
-    // @ts-ignore
-    if (img.complete) {
-      resolve(colorThief.getColor(img));
-    } else {
-      img.addEventListener("load", function () {
+      // @ts-ignore
+      if (img.complete) {
         resolve(colorThief.getColor(img));
-      });
+      } else {
+        img.addEventListener("load", function () {
+          resolve(colorThief.getColor(img));
+        });
+      }
+    } catch (error) {
+      reject("Failed to get dominant color");
     }
-    // }
-    // reject("Invalid Image");
   });
 };
 

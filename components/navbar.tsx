@@ -9,7 +9,7 @@ import { classNames } from "@/libs";
 import { useStore } from "@/hooks";
 import { routes } from "@/routes";
 import { clash } from "@/fonts";
-import { Theme } from "./theme";
+import { Theme } from ".";
 
 export const Navbar = () => {
   const { store, setStore } = useStore();

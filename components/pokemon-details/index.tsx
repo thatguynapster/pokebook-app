@@ -22,7 +22,6 @@ export const PokemonDetails = ({ pokemon }: PokemonDetailsProps) => {
   const [dominantColor, setDominantColor] = useState<string>("#f1f1f1");
 
   const { data, isLoading, error } = usePokemon(pokemon && pokemon.name);
-  // console.log(data, error);
 
   const tabs: LocalTabsProps["tabs"] = [
     {
@@ -73,7 +72,8 @@ export const PokemonDetails = ({ pokemon }: PokemonDetailsProps) => {
               onLoad={() => {
                 get_average_rgb(
                   data?.sprites?.other?.dream_world.front_default ??
-                    data?.sprites?.front_default
+                    data?.sprites?.front_default ??
+                    "/img/logo-small.png"
                 )
                   .then((color) => {
                     setDominantColor(RGBToHex(color[0], color[1], color[2]));

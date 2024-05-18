@@ -7,11 +7,7 @@ import { classNames } from "@/libs";
 import { useStore } from "@/hooks";
 import { Dropdown } from ".";
 
-interface PageLimitProps {
-  setFilters: Dispatch<SetStateAction<Partial<FilterProps>>>;
-}
-
-export const PageLimit = ({ setFilters }: PageLimitProps) => {
+export const PageLimit = () => {
   const { store, setStore } = useStore();
   const limits = [8, 12, 16, 24];
 

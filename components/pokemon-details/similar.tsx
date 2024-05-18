@@ -18,7 +18,6 @@ export const Similar = ({ pokemon }: PokemonDetailsProps) => {
     `https://pokeapi.co/api/v2/type/${pokemonType}/`,
     (key: string) => http.get<never, any>(key, {}).then((resp) => resp)
   );
-  console.log(data);
 
   return (
     <Swiper
@@ -28,13 +27,13 @@ export const Similar = ({ pokemon }: PokemonDetailsProps) => {
       onSwiper={(swiper) => setSwiper(swiper)}
     >
       {data?.pokemon
-        ?.slice(0, 5)
+        ?.slice(0, 5) // only show first 5 similar pokemon
         .filter(
           ({ pokemon: f_pokemon }: any) => pokemon.name !== f_pokemon.name
-        )
+        ) // check if this pokemon is in the list and remove it
         .map(({ pokemon }: any, index: number) => (
           <SwiperSlide className="w-full h-full" key={index}>
-            <PokemonCard {...{ pokemon }} with_types={false} />
+            <PokemonCard {...{ pokemon }} withTypes={false} />
           </SwiperSlide>
         ))}
     </Swiper>

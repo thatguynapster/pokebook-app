@@ -63,7 +63,7 @@ export const Pagination: React.FC<PaginationProps> = ({ pages }) => {
     setStore({ ...store, page });
   };
 
-  const getDisplayPages = () => {
+  const displayPageButtons = () => {
     const displayedPages: (number | string)[] = [];
 
     if (pages <= 10) {
@@ -84,8 +84,6 @@ export const Pagination: React.FC<PaginationProps> = ({ pages }) => {
           displayedPages.push(i);
         }
       } else {
-        // displayedPages.push(1);
-        // displayedPages.push("...");
         for (
           let i = currentPage - paginationButtonOffset;
           i <= currentPage;
@@ -127,7 +125,7 @@ export const Pagination: React.FC<PaginationProps> = ({ pages }) => {
       >
         <ChevronLeftIcon className="w-5 h-5" />
       </button>
-      {getDisplayPages().map((page, index) =>
+      {displayPageButtons().map((page, index) =>
         typeof page === "number" ? (
           <PaginationButton
             key={index}

@@ -12,7 +12,8 @@ const layout = ({
   const { store } = useStore();
 
   useEffect(() => {
-    document.documentElement.style.setProperty("--primary", store.theme!);
+    store.theme &&
+      document.documentElement.style.setProperty("--primary", store.theme!);
   }, [store]);
 
   return (
