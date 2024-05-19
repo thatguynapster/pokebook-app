@@ -86,7 +86,8 @@ export const Theme = ({
                         >
                           <div
                             className={classNames(
-                              store.theme === theme && "border border-black",
+                              theme === (store.theme ?? themes[0]) &&
+                                "border border-black",
                               "flex items-center justify-center",
                               "w-[88px] h-[88px] rounded-full"
                             )}
